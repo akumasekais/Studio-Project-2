@@ -37,6 +37,7 @@ public class PlayerMove : MonoBehaviour
         {
             transform.Rotate(-transform.up * turnSpeed * Time.deltaTime);
         }
+
         else if (Input.GetKey("e"))
         {
             transform.Rotate(transform.up * turnSpeed * Time.deltaTime);
