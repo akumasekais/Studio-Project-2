@@ -32,7 +32,10 @@ public class MouseLook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetKey(KeyCode.E))
+        {
+            Interact();
+        }
         // get the mouse x and y movement and assign to float.
         float mouseX = Input.GetAxis("Mouse X"); 
         float mouseY = Input.GetAxis("Mouse Y");
@@ -51,4 +54,23 @@ public class MouseLook : MonoBehaviour
         transform.rotation = localRot;
         player.transform.rotation = bodyRot;
     }
+    private void Interact ()
+        
+    {
+        RaycastHit hit;
+        if(Physics.Raycast(transform.position, transform.forward, out hit, 10))
+        {
+            if(hit.collider.gameObject.TryGetComponent<IInteraction>(out IInteraction inter))
+            Debug.Log("THERE IS A" + hit.collider.name);
+        }
+        //if the collider has a door component, open the door
+        //if the collider has a key component, add key to inventory
+        //if the collider has a lock component, check for key in inventory then unlock
+    }
+}
+
+public interface IInteraction
+{
+    public void Activate();
+
 }

@@ -7,7 +7,7 @@ public class BALLS : MonoBehaviour
     private Rigidbody rbody;
 
     [SerializeField] private Vector3 ballVelocity;
-     [SerializeField] public ballVelocity;
+    [SerializeField] public float ballSpeed;
 
     // Start is called before the first frame update
     void Start()
@@ -27,14 +27,14 @@ public class BALLS : MonoBehaviour
     void Update()
     {
         rbody.velocity = ballVelocity * ballSpeed;
-            if (Input.GetKeyDown (KeyCode.Tab))
+          
         
     }
     public void SetVelocity(float dirX, float dirZ, float spinVal)
     {
         //takes in a variable for x axis & apply to 
-        float dirX = ballVelocity.x * dirX;
-        float dirZ = ballVelocity.z * dirZ;
+        float newX = ballVelocity.x * dirX;
+        float newZ = ballVelocity.z * dirZ;
     }
     private void OnCollisionEnter(Collision collision)
     {

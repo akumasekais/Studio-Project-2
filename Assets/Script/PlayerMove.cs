@@ -5,14 +5,14 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     [SerializeField] private float speed = 5;
-   // [SerializeField] private float turnSpeed = 5;
+    // [SerializeField] private float turnSpeed = 5;
     [SerializeField] private float jumpforce = 10f;
-    Rigidbody rb;
+    Rigidbody rbody;
     bool grounded;
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        rbody = GetComponent<Rigidbody>();
         grounded = true;
     }
 
@@ -31,7 +31,7 @@ public class PlayerMove : MonoBehaviour
             //move in the opposite direction the player is facing
             transform.position += -transform.forward * speed * Time.deltaTime;
         }
-        /*
+
         if (Input.GetKey("d"))
         {
             //move in the direction the player is facing
@@ -42,24 +42,27 @@ public class PlayerMove : MonoBehaviour
             //move in the opposite direction the player is facing
             transform.position += -transform.right * speed * Time.deltaTime;
             //check if player is pressing q (left) or e (right)
-           
-            if (Input.GetKey("q"))
-            {
-                transform.Rotate(-transform.up * turnSpeed * Time.deltaTime);
-            }
-            else if (Input.GetKey("e"))
-            {
-                transform.Rotate(transform.up * turnSpeed * Time.deltaTime);
-            }
-            */
+            /*
+             if (Input.GetKey("q"))
+             {
+                 transform.Rotate(-transform.up * turnSpeed * Time.deltaTime);
+             }
+             else if (Input.GetKey("e"))
+             {
+                 transform.Rotate(transform.up * turnSpeed * Time.deltaTime);
+             }
+             */
             if (Input.GetKeyDown("space"))
             {
                 if (grounded == true)
-                    rb.AddForce(Vector3.up * jumpforce, ForceMode.Impulse);
+                    rbody.AddForce(Vector3.up * jumpforce, ForceMode.Impulse);
                 grounded = false;
             }
 
         }
+
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "ground")
@@ -67,7 +70,6 @@ public class PlayerMove : MonoBehaviour
             grounded = true;
         }
     }
-
 }
     
 
