@@ -61,7 +61,10 @@ public class MouseLook : MonoBehaviour
         if(Physics.Raycast(transform.position, transform.forward, out hit, 10))
         {
             if(hit.collider.gameObject.TryGetComponent<IInteraction>(out IInteraction inter))
-            Debug.Log("THERE IS A" + hit.collider.name);
+          
+            {
+                inter.Activate();
+            }
         }
         //if the collider has a door component, open the door
         //if the collider has a key component, add key to inventory
